@@ -28,7 +28,7 @@ gulp.task('lint', () => {
 })
 
 // compile to es2015 but leave the import/exports intact
-gulp.task('compile', ['lint'], () => {
+gulp.task('compile', [], () => {
   return gulp.src('./src/index.js')
     .pipe(sourcemaps.init())
     .pipe(buble({
@@ -44,10 +44,8 @@ gulp.task('compile', ['lint'], () => {
 // bundle it
 gulp.task('rollup', ['compile'], () => {
   return rollup({
-    entry: './lib/isInViewport.es6.js',
+    input: './lib/isInViewport.es6.js',
     format: 'umd',
-    moduleId: 'isInViewport',
-    moduleName: 'isInViewport',
     globals: {
       jquery: '$',
       window: 'window'
